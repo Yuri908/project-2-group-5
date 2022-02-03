@@ -1,4 +1,4 @@
-const { Shows } = require("../models");
+const { Show } = require("../models");
 
 const showData = [
   {

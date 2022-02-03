@@ -1,4 +1,4 @@
-const { Movies } = require("../models");
+const { Movie } = require("../models");
 
 const movieData = [
   {
