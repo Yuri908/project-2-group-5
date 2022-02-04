@@ -1,30 +1,29 @@
 // import all models
-const Post = require("./Post");
+const Movie = require("./Movie");
 const User = require("./User");
+const Show = require("./Show");
 const Vote = require("./Vote");
-const Comment = require("./Comment");
 
 // create associations
-User.hasMany(Post, {
-  foreignKey: "user_id",
-});
+// User.hasMany(Movie, {
+//   foreignKey: "user_id",
+// });
 
-Post.belongsTo(User, {
+// Movie.belongsTo(User, {
+//   foreignKey: "user_id",
+//   onDelete: "SET NULL",
+// });
+
+User.belongsToMany(Movie, {
+  through: Vote,
+  as: "voted_movies",
   foreignKey: "user_id",
   onDelete: "SET NULL",
 });
 
-User.belongsToMany(Post, {
+Movie.belongsToMany(User, {
   through: Vote,
-  as: "voted_posts",
-
-  foreignKey: "user_id",
-  onDelete: "SET NULL",
-});
-
-Post.belongsToMany(User, {
-  through: Vote,
-  as: "voted_posts",
+  as: "voted_movies",
   foreignKey: "post_id",
   onDelete: "SET NULL",
 });
@@ -34,8 +33,8 @@ Vote.belongsTo(User, {
   onDelete: "SET NULL",
 });
 
-Vote.belongsTo(Post, {
-  foreignKey: "post_id",
+Vote.belongsTo(Movie, {
+  foreignKey: "movie_id",
   onDelete: "SET NULL",
 });
 
@@ -43,27 +42,27 @@ User.hasMany(Vote, {
   foreignKey: "user_id",
 });
 
-Post.hasMany(Vote, {
-  foreignKey: "post_id",
+Movie.hasMany(Vote, {
+  foreignKey: "movie_id",
 });
 
-Comment.belongsTo(User, {
-  foreignKey: "user_id",
-  onDelete: "SET NULL",
-});
+// Comment.belongsTo(User, {
+//   foreignKey: "user_id",
+//   onDelete: "SET NULL",
+// });
 
-Comment.belongsTo(Post, {
-  foreignKey: "post_id",
-  onDelete: "SET NULL",
-});
+// Comment.belongsTo(Post, {
+//   foreignKey: "post_id",
+//   onDelete: "SET NULL",
+// });
 
-User.hasMany(Comment, {
-  foreignKey: "user_id",
-  onDelete: "SET NULL",
-});
+// User.hasMany(Comment, {
+//   foreignKey: "user_id",
+//   onDelete: "SET NULL",
+// });
 
-Post.hasMany(Comment, {
-  foreignKey: "post_id",
-});
+// Post.hasMany(Comment, {
+//   foreignKey: "post_id",
+// });
 
-module.exports = { User, Post, Vote, Comment };
+module.exports = { User, Movie, Vote, Show };
