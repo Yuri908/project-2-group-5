@@ -3,7 +3,7 @@ const { Movie, User, Show, Vote } = require("../../models");
 
 // get all movies
 router.get("/", (req, res) => {
-  User.findAll({
+  Movie.findAll({
     // attributes: { exclude: ["password"] },
   })
     .then((dbMovieData) => res.json(dbMovieData))
@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  User.findOne({
+  Movie.findOne({
     // attributes: { exclude: ["password"] },
     where: {
       id: req.params.id,
@@ -55,7 +55,7 @@ router.get("/:id", (req, res) => {
 
 // router.post("/", (req, res) => {
 //   // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
-//   User.create({
+//   Movie.create({
 //     username: req.body.username,
 //     email: req.body.email,
 //     password: req.body.password,

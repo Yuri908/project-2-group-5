@@ -8,7 +8,7 @@ class Movie extends Model {
       user_id: body.user_id,
       movies_id: body.movies_id,
     }).then(() => {
-      return Post.findOne({
+      return Movie.findOne({
         where: {
           id: body.post_id,
         },
@@ -19,7 +19,7 @@ class Movie extends Model {
           "created_at",
           [
             sequelize.literal(
-              "(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)"
+              "(SELECT COUNT(*) FROM vote WHERE Movie.id = vote.post_id)"
             ),
             "vote_count",
           ],
@@ -45,7 +45,7 @@ class Movie extends Model {
   }
 }
 
-// create fields/columns for Post model
+// create fields/columns for Movie model
 Movie.init(
   {
     id: {
