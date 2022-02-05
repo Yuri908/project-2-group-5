@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
+
 // create our Movie model
 class Movie extends Model {
   static upvote(body, models) {

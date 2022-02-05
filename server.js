@@ -9,17 +9,17 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 const session = require("express-session");
-const { sequelize } = require("./models/Post");
+const { sequelize } = require("./models/Movie");
 
-const sess = {
-  secret: "Super secret secret",
-  cookie: {},
-  resave: false,
-  saveUninitialized: true,
-  store: new SequelizeStore({
-    db: sequelize,
-  }),
-};
+// const sess = {
+//   secret: "Super secret secret",
+//   cookie: {},
+//   resave: false,
+//   saveUninitialized: true,
+//   store: new SequelizeStore({
+//     db: sequelize,
+//   }),
+// };
 
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
@@ -39,4 +39,4 @@ Sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log("Now listening"));
 });
 
-app.use(session(sess));
+// app.use(session(sess));
