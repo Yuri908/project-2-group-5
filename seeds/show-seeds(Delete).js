@@ -1,18 +1,18 @@
-const { Show } = require("../models");
+// const { Show } = require("../models");
 
-const showData = [
-  {
-    Title: lorum,
-    Genre: lorum,
-    Channel: lorum,
-  },
-  {
-    Title: lorum,
-    Genre: lorum,
-    Channel: lorum,
-  },
-];
+// const showData = [
+//   {
+//     Title: lorum,
+//     Genre: lorum,
+//     Channel: lorum,
+//   },
+//   {
+//     Title: lorum,
+//     Genre: lorum,
+//     Channel: lorum,
+//   },
+// ];
 
-const seedShows = () => Vote.bulkCreate(showData);
+// const seedShows = () => Vote.bulkCreate(showData);
 
-module.exports = seedShows;
+// module.exports = seedShows;

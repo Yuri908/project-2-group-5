@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const sequelize = require("../../config/connection");
-const { Movie, User, Show, Vote } = require("../../models");
+const { Movie, User } = require("../../models");
 const withAuth = require("../../utils/auth");
 
 // get all users
@@ -162,18 +162,18 @@ router.post("/", withAuth, (req, res) => {
     });
 });
 
-router.put("/upvote", withAuth, (req, res) => {
-  // custom static method created in models/User.js
-  User.upvote(
-    { ...req.body, user_id: req.session.user_id },
-    { Vote, Comment, User }
-  )
-    .then((updatedVoteData) => res.json(updatedVoteData))
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
+// router.put("/upvote", withAuth, (req, res) => {
+//   // custom static method created in models/User.js
+//   User.upvote(
+//     { ...req.body, user_id: req.session.user_id },
+//     { Vote, Comment, User }
+//   )
+//     .then((updatedVoteData) => res.json(updatedVoteData))
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
 
 router.put("/:id", withAuth, (req, res) => {
   User.update(

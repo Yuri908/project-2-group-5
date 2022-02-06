@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Movie, User, Show, Vote } = require("../../models");
+const { Movie, User } = require("../../models");
 
 // get all movies
 router.get("/", (req, res) => {
@@ -24,14 +24,14 @@ router.get("/:id", (req, res) => {
         model: User,
         attributes: ["id", "username"],
       },
-      {
-        model: Vote,
-        attributes: ["id", "comment_text", "movie_id"],
-        include: {
-          model: User,
-          attributes: ["user_id"],
-        },
-      },
+      // {
+      //   model: Vote,
+      //   attributes: ["id", "comment_text", "movie_id"],
+      //   include: {
+      //     model: User,
+      //     attributes: ["user_id"],
+      //   },
+      // },
       // {
       //   model: Post,
       //   attributes: ["title"],
