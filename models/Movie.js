@@ -2,50 +2,51 @@ const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
 // create our Movie model
-class Movie extends Model {
-  static upvote(body, models) {
-    return models.Movie.create({
-      user_id: body.user_id,
-      movies_id: body.movies_id,
-    }).then(() => {
-      return Movie.findOne({
-        where: {
-          id: body.post_id,
-        },
-        attributes: [
-          "id",
-          "post_url",
-          "title",
-          "created_at",
-          [
-            sequelize.literal(
-              "(SELECT COUNT(*) FROM vote WHERE Movie.id = vote.post_id)"
-            ),
-            "vote_count",
-          ],
-        ],
-        include: [
-          {
-            model: models.Comment,
-            attributes: [
-              "id",
-              "comment_text",
-              "post_id",
-              "user_id",
-              "created_at",
-            ],
-            include: {
-              model: models.User,
-              attributes: ["username"],
-            },
-          },
-        ],
-      });
-    });
-  }
-}
+// class Movie extends Model {
+//   static upvote(body, models) {
+//     return models.Movie.create({
+//       user_id: body.user_id,
+//       movies_id: body.movies_id,
+//     }).then(() => {
+//       return Movie.findOne({
+//         where: {
+//           id: body.post_id,
+//         },
+//         attributes: [
+//           "id",
+//           "post_url",
+//           "title",
+//           "created_at",
+//           [
+//             sequelize.literal(
+//               "(SELECT COUNT(*) FROM vote WHERE Movie.id = vote.post_id)"
+//             ),
+//             "vote_count",
+//           ],
+//         ],
+//         include: [
+//           {
+//             model: models.Comment,
+//             attributes: [
+//               "id",
+//               "comment_text",
+//               "post_id",
+//               "user_id",
+//               "created_at",
+//             ],
+//             include: {
+//               model: models.User,
+//               attributes: ["username"],
+//             },
+//           },
+//         ],
+//       });
+//     });
+//   }
+// }
 
 // create fields/columns for Movie model
+class Movie extends Model {}
 Movie.init(
   {
     id: {
