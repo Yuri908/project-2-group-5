@@ -1,6 +1,6 @@
 const seedUsers = require("./user-seeds");
 const seedMovies = require("./movie-seeds");
-const seedShows = require("./show-seeds");
+const seedShows = require("./show-seeds(Delete)");
 // const seedVotes = require('./vote-seeds');
 
 const sequelize = require("../config/connection");
