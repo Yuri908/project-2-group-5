@@ -86,6 +86,27 @@ const withAuth = require("../../utils/auth");
 //     });
 // });
 
+router.post("/", (req, res) => {
+  User.create({
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+  })
+    .then((dbUserData) => {
+      req.session.save(() => {
+        req.session.user_id = dbUserData.id;
+        req.session.username = dbUserData.username;
+        req.session.loggedIn = true;
+
+        res.json(dbUserData);
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 router.post("/login", (req, res) => {
   // expects {email: 'lernantino@gmail.com', password: 'password1234'}
   User.findOne({
@@ -94,14 +115,20 @@ router.post("/login", (req, res) => {
     },
   }).then((dbUserData) => {
     if (!dbUserData) {
-      res.status(400).json({ message: "No user with that email address!" });
+      res.status(400).json({
+        message:
+          "Incorrect email or password has been entered, please try again!",
+      });
       return;
     }
 
     const validPassword = dbUserData.checkPassword(req.body.password);
 
     if (!validPassword) {
-      res.status(400).json({ message: "Incorrect password!" });
+      res.status(400).json({
+        message:
+          "Incorrect email or password has been entered, please try again!",
+      });
       return;
     }
 
@@ -188,7 +215,7 @@ router.put("/:id", withAuth, (req, res) => {
   )
     .then((dbUserData) => {
       if (!dbUserData) {
-        res.status(404).json({ message: "No post found with this id" });
+        res.status(404).json({ message: "No user found with this id" });
         return;
       }
       res.json(dbUserData);
