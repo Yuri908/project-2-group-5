@@ -1,7 +1,11 @@
-<ol class="post-list">
+
+
+<ol class="post-column">
   {{#each posts as |post|}}
   <li>
-    {{> post-info post }}
+    <article class="Movie">
+      <div class="title">
+         <a href="{{Movie.post_url}}" target="_blank">{{post.title}}</a>
   </li>
   {{/each}}
 </ol>

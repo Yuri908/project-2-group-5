@@ -1,5 +1,4 @@
 .DS_Store
-dev
 .env
 node_modules
 notes.txt
